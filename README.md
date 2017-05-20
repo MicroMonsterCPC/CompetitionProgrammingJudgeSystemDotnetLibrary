@@ -1,6 +1,5 @@
 ﻿# CompetitionProgrammingJudgeSystemDotnetLibrary
 
-
 ## サンプル
 
 かなり本気なサンプルコードです。
@@ -32,58 +31,58 @@ using CompetitionProgrammingJudgeSystemDotnetLibrary;
 
 namespace CompetitionProgrammingJudgeSystemDotnetLibrarySample {
   public partical class Form1 : Form {
-  	public Form1() {
-  		InitializeComponent();
-  	}
-  	
-  	// すべての問題を格納する配列
-  	private Question[] questions;
-  	
-  	// プログラムが起動した時
-  	private async void Form1_Load(object sender, EventArgs e) {
-  		// すべての問題を非同期に取得
-  		questions = await Request.GetQuestionsAsync();
-  		
-  		// すべての問題のタイトルを comboBox1 に追加
-  		questions.Select(question => comboBox1.Items.Add(question.Title));
-  		
-  		// すべてのプログラミング言語を comboBox2 に追加
-  		typeof(Language).GetEnumNames().Select(language => comboBox2.Items.Add(language));
-  	}
-  	
-  	// comboBox1 の選択が変更された時
-  	private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
-  		// 選択中の問題の内容を表示
-  		webBrowser1.DocumentText = getSelectedQuestion().BodyHtml;
-  	}
-  	
-  	// ボタンが押された時
-  	private async void button1_Click(object sender, EventArgs e) {
-  		// 選択中の問題を取得
-  		Question question = getSelectedQuestion();
-  		
-	 		// 選択中のプログラミング言語を取得
-	 		Language language = getSelectedLanguage();
-	 		
-	 		// 回答を非同期に提出
-  		bool success = await Request.SubmitAnswerAsync(question.Id, richTextBox1.Text, language);
-  		
-  		// 結果を文字列に変換
-  		string message = (success) ? "正解" : "不正解";
-  		
-  		// 結果を表示
-  		MessageBox.Show(message);
-  	}
-  	
-  	// 選択中の問題を取得
-  	private Question getSelectedQuestion() {
-  		return questions.Where(question => comboBox1.SelectedItem.ToString() == question.Title).FIrst();
-  	}
-  	
-  	// 選択中のプログラミング言語を取得
-  	private Language getSelectedLanguage() {
-  		return (Language)comboBox2.SelectedItem;
-  	}
+    public Form1() {
+      InitializeComponent();
+    }
+
+    // すべての問題を格納する配列
+    private Question[] questions;
+
+    // プログラムが起動した時
+    private async void Form1_Load(object sender, EventArgs e) {
+      // すべての問題を非同期に取得
+      questions = await Request.GetQuestionsAsync();
+
+      // すべての問題のタイトルを comboBox1 に追加
+      questions.Select(question => comboBox1.Items.Add(question.Title));
+
+      // すべてのプログラミング言語を comboBox2 に追加
+      typeof(Language).GetEnumNames().Select(language => comboBox2.Items.Add(language));
+    }
+
+    // comboBox1 の選択が変更された時
+    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
+      // 選択中の問題の内容を表示
+      webBrowser1.DocumentText = getSelectedQuestion().BodyHtml;
+    }
+
+    // ボタンが押された時
+    private async void button1_Click(object sender, EventArgs e) {
+      // 選択中の問題を取得
+      Question question = getSelectedQuestion();
+
+      // 選択中のプログラミング言語を取得
+      Language language = getSelectedLanguage();
+		
+      // 回答を非同期に提出
+      bool success = await Request.SubmitAnswerAsync(question.Id, richTextBox1.Text, language);
+
+      // 結果を文字列に変換
+      string message = (success) ? "正解" : "不正解";
+
+      // 結果を表示
+      MessageBox.Show(message);
+    }
+
+    // 選択中の問題を取得
+    private Question getSelectedQuestion() {
+      return questions.Where(question => comboBox1.SelectedItem.ToString() == question.Title).FIrst();
+    }
+
+    // 選択中のプログラミング言語を取得
+    private Language getSelectedLanguage() {
+      return (Language)comboBox2.SelectedItem;
+    }
   }
 }
 ```
