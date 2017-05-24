@@ -24,7 +24,7 @@ namespace CompetitionProgrammingJudgeSystemDotnetLibrary {
     /// <param name="lang">Programming Language</param>
     /// <returns>Is Code Success</returns>
     public static async Task<bool?> SubmitAnswerAsync(int id, string code, Language lang) {
-      Answer obj = new Answer() { Id = id, Code = code, Language = lang };
+      Answer[] obj = new Answer[1] { new Answer() { Id = id, Code = code, Language = lang } };
       string responseJson = await RequestCore.PostAsync(obj, "http://localhost:3000/answers");
       AnswerResponse response = JsonConvert.DeserializeObject<AnswerResponse>(responseJson);
       return response.Success;

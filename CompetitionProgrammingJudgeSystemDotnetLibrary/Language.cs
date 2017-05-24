@@ -8,12 +8,12 @@ namespace CompetitionProgrammingJudgeSystemDotnetLibrary {
     /// <summary>
     /// Programming Language of Ruby
     /// </summary>
-    [EnumMember(Value = "rb")]
+    [EnumMember(Value = "ruby")]
     Ruby,
     /// <summary>
     /// Programming Language of Python 2
     /// </summary>
-    [EnumMember(Value = "py")]
+    [EnumMember(Value = "python")]
     Python
   }
 }

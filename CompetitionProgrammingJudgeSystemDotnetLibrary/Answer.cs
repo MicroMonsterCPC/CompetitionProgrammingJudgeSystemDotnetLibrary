@@ -4,6 +4,7 @@ namespace CompetitionProgrammingJudgeSystemDotnetLibrary {
   /// <summary>
   /// Answer Json Payload
   /// </summary>
+  [JsonObject("answer")]
   public class Answer {
     /// <summary>
     /// Question ID
